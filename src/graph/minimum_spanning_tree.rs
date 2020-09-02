@@ -1,4 +1,4 @@
-use crate::graph::union_find::UnionFind;
+use crate::data_structure::union_find::UnionFind;
 
 pub struct MinimumSpanningTree<T> {
     n: usize,
