@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 
 /// Sieve of Eratosthenes
+/// O(n loglog n)
 pub fn sieve_of_eratosthenes(n: usize) -> Vec<bool> {
     let mut tbl = vec![true; n + 1];
     tbl[0] = false;
@@ -44,9 +45,9 @@ pub fn factors_trial_division(mut n: usize) -> Vec<(usize, usize)> {
     factors
 }
 
-/// Fast prime factorization (called 'osa_k method')
+/// Preparation for osa_k method
 /// O(n loglog n)
-pub fn factors_osa_k(n: usize) -> HashMap<usize, usize> {
+pub fn osa_k_prep(n: usize) -> Vec<usize> {
     // Compute the smallest prime factor for (0..=n)
     let mut tbl = (0..=n).collect::<Vec<usize>>();
     for p in 2.. {
@@ -61,7 +62,12 @@ pub fn factors_osa_k(n: usize) -> HashMap<usize, usize> {
             }
         }
     }
+    tbl
+}
 
+/// Fast prime factorization (called 'osa_k method')
+/// O(log n)
+pub fn factors_osa_k(n: usize, tbl: &Vec<usize>) -> HashMap<usize, usize> {
     let mut factors = HashMap::new();
     let mut t = n;
     while t > 1 {
@@ -95,10 +101,11 @@ mod test {
 
     #[test]
     fn factors_osa_k_test() {
+        let n = 60;
         let mut fac = HashMap::new();
         fac.insert(2, 2);
         fac.insert(3, 1);
         fac.insert(5, 1);
-        assert_eq!(factors_osa_k(60), fac);
+        assert_eq!(factors_osa_k(n, &osa_k_prep(n)), fac);
     }
 }
