@@ -58,8 +58,8 @@ mod test {
         ];
 
         let mut adj_matrix = vec![vec![std::usize::MAX; n]; n];
-        for i in 0..n {
-            adj_matrix[i][i] = 0;
+        for (i, row) in adj_matrix.iter_mut().enumerate() {
+            row[i] = 0;
         }
         for (a, b, t) in abt.into_iter() {
             adj_matrix[a - 1][b - 1] = t;
