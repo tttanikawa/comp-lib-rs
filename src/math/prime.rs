@@ -19,13 +19,11 @@ pub fn sieve_of_eratosthenes(n: usize) -> Vec<bool> {
 /// Find n or less primes using Sieve of Eratosthenes
 pub fn primes(n: usize) -> Vec<usize> {
     let tbl = sieve_of_eratosthenes(n);
-    let primes = tbl
-        .into_iter()
+    tbl.into_iter()
         .enumerate()
         .filter(|&(_, is_prime)| is_prime)
         .map(|(i, _)| i)
-        .collect::<Vec<usize>>();
-    primes
+        .collect::<Vec<usize>>()
 }
 
 /// Prime factorization
@@ -67,7 +65,7 @@ pub fn osa_k_prep(n: usize) -> Vec<usize> {
 
 /// Fast prime factorization (called 'osa_k method')
 /// O(log n)
-pub fn factors_osa_k(n: usize, tbl: &Vec<usize>) -> HashMap<usize, usize> {
+pub fn factors_osa_k(n: usize, tbl: &[usize]) -> HashMap<usize, usize> {
     let mut factors = HashMap::new();
     let mut t = n;
     while t > 1 {

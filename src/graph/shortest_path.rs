@@ -16,7 +16,7 @@ pub fn warshall_floyd(adj_matrix: &mut Vec<Vec<usize>>) {
 }
 
 /// adj_list: Vec<Vec<(to, cost)>>
-pub fn dijkstra(adj_list: &Vec<Vec<(usize, usize)>>, start: usize, goal: usize) -> Option<usize> {
+pub fn dijkstra(adj_list: &[Vec<(usize, usize)>], start: usize, goal: usize) -> Option<usize> {
     let mut dist = vec![std::usize::MAX; adj_list.len()];
     let mut heap = BinaryHeap::new();
 

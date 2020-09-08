@@ -17,10 +17,10 @@ where
         + std::cmp::Ord,
 {
     /// Create new instance
-    pub fn new(n: usize, edges: &Vec<(usize, usize, T)>) -> Self {
+    pub fn new(n: usize, edges: &[(usize, usize, T)]) -> Self {
         MinimumSpanningTree {
             n,
-            edges: edges.clone(),
+            edges: edges.to_owned(),
             selected: vec![],
             total_cost: num::Zero::zero(),
         }
