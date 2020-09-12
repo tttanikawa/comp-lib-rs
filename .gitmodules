@@ -1,0 +1,3 @@
+[submodule "ac-library-rs"]
+	path = ac-library-rs
+	url = https://github.com/rust-lang-ja/ac-library-rs
