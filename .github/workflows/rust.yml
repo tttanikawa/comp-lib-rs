@@ -38,7 +38,7 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: fmt
-          args: --all -- --check
+          args: --package mylib -- --check
 
   build:
     strategy:
@@ -82,18 +82,18 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: clippy
-          args: --workspace --all-targets -- -D warnings
+          args: --workspace --exclude ac-library-rs -- -D warnings
 
       - name: cargo-build
         uses: actions-rs/cargo@v1
         with:
           command: build
-          args: --workspace --all-targets
+          args: --workspace --exclude ac-library-rs
 
       - name: cargo-test
         uses: actions-rs/cargo@v1
         with:
           command: test
-          args: --workspace --no-fail-fast
+          args: --workspace --exclude ac-library-rs --no-fail-fast
         env:
           RUST_BACKTRACE: full
