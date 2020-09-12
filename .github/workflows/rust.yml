@@ -73,6 +73,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Checkout submodules
+        uses: textbook/git-checkout-submodule-action@master
+
       - name: 'Setup `${{ matrix.toolchain }}`'
         uses: actions-rs/toolchain@v1
         with:
